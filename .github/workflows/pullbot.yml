@@ -1,0 +1,35 @@
+name: Pull Request Bot
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  merge_pull_request:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Merge pull request
+        if: github.event.pull_request.user.login == 'pawitpr'
+        uses: peter-evans/merge-pull-request-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Comment on pull request
+        if: github.event.pull_request.user.login == 'pawitpr'
+        uses: actions/github-script@v4
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const message = "The job is done.";
+            const payload = {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: message,
+            };
+            await github.issues.createComment(payload);
