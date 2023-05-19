@@ -6,10 +6,8 @@ image: "port.jpeg"
 ---
 
 ## How to make a port forwarding app
-- Step1: Choose the programming language like (Nodejs, Rust , Golang , Python);
--  Step2:  Define the protocol that will be use ("TCP","UDP","HTTP2","WS")
-$ Step3: Make a reverse proxy to forward the user port to yout server
-^ Done
+Step1 : Choose your programming language like(golang , python , rust,) theese are the mostly use in network programming lang
+Step2: Make a fast reverse proxy 
 
 For that, I Aleardy created a node in which port forwarding service, which reverse proxy from websocket (remote server from user)
 https://github.com/pawitpr/portforward-nodejs
